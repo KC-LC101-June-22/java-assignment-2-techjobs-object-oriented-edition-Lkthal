@@ -1,10 +1,11 @@
 package org.launchcode.techjobs.oo;
 
+import java.lang.reflect.Field;
 import java.util.Objects;
 
 public class Job {
 
-    private int id;
+    private final int id;
     private static int nextId = 1;
 
     private String name;
@@ -39,13 +40,14 @@ public class Job {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
-        return Objects.equals(name, job.name) && Objects.equals(employer, job.employer) && Objects.equals(location, job.location) && Objects.equals(positionType, job.positionType) && Objects.equals(coreCompetency, job.coreCompetency);
+        return id == job.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, employer, location, positionType, coreCompetency);
+        return Objects.hash(id);
     }
+
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
@@ -102,5 +104,38 @@ public class Job {
 
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
+    }
+
+
+    public String toString() {
+        String[] labels = {"ID: ", "Name: ", "Employer: ", "Location: ", "Position Type: ", "Core Competency: "};
+        String blankFieldMessage = "Data not available";
+        String message = "";
+        int jobID = getId();
+        String jobName = getName();
+        String jobEmployer = getEmployer().toString();
+        String jobLocation = getLocation().toString();
+        String jobType = getPositionType().toString();
+        String jobSkill = getCoreCompetency().toString();
+
+
+        if (jobName == "" || jobName == null) {
+             jobName = "Data not available";
+        }
+        if(jobEmployer == "" || jobEmployer == null){
+            jobEmployer = "Data not available";
+        }
+        if(jobLocation == "" || jobLocation == null){
+            jobLocation = "Data not available";
+        }
+        if(jobType == "" || jobType == null){
+            jobType = "Data not available";
+        }
+        if(jobSkill == "" || jobSkill == null){
+            jobSkill = "Data not available";
+        }
+        message = "\n" + "ID: " + jobID + "\nName: " + jobName  + "\nEmployer: " + jobEmployer + "\nLocation: " + jobLocation + "\nPosition Type: " + jobType + "\nCore Competency: " + jobSkill + "\n";
+
+        return message;
     }
 }
