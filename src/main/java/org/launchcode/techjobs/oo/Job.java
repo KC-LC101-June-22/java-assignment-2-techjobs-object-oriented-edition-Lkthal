@@ -53,9 +53,6 @@ public class Job {
     //  and id.
 
     //getter
-    public static int getNextId() {
-        return nextId;
-    }
 
     public int getId() {
         return id;
@@ -82,9 +79,6 @@ public class Job {
     }
 
     //setter
-    public static void setNextId(int nextId) {
-        Job.nextId = nextId;
-    }
 
     public void setName(String name) {
         this.name = name;
